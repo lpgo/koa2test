@@ -1,5 +1,7 @@
-const router = require('koa-router')()
-const doc = require("../model/db.js")
+import Koarouter from 'koa-router'
+import MyModel from '../model/db.js'
+
+const router = new Koarouter()
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -18,8 +20,13 @@ router.get('/json', async (ctx, next) => {
 })
 
 router.get('/save', async (ctx, next) => {
-  await doc.save()
+  let model = new MyModel({
+    num: '123',
+    name: 'liup',
+    size: 'big'
+  })
+  await model.save()
   ctx.body = 'koa2 string'
 })
 
-module.exports = router
+export default router

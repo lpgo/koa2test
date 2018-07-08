@@ -25,6 +25,7 @@ router.get('/save', async (ctx, next) => {
     name: 'liup',
     size: 'big'
   })
+
   await model.save()
   ctx.body = 'koa2 string'
 })
